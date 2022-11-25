@@ -13,7 +13,7 @@ const spin = keyframes`
   to { transform: rotate(360deg); }
 `
 
-export const Logo = forwardRef<ImageProps, "img">((props, ref) => {
+const Logo = forwardRef<ImageProps, "img">((props, ref) => {
   const prefersReducedMotion = usePrefersReducedMotion()
 
   const animation = prefersReducedMotion
@@ -22,3 +22,5 @@ export const Logo = forwardRef<ImageProps, "img">((props, ref) => {
 
   return <chakra.img animation={animation} src={logo} ref={ref} {...props} />
 })
+
+export default Logo
