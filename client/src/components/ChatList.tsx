@@ -5,8 +5,11 @@ import ChatListItem from './ChatListItem'
 interface ChatListProps { }
 
 const ChatList: React.FC<ChatListProps> = (props) => {
+
   const [loading, setLoading] = React.useState<boolean>(true);
   const [users, setUsers] = React.useState<any>();
+  const [userId, setUserId] = React.useState<string>("");
+
   React.useEffect(() => {
     fetch('http://localhost:8000/user/list')
       .then(res => res.json())

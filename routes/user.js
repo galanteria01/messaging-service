@@ -1,9 +1,9 @@
 const express = require('express');
-const Message = require('../models/Message');
+const User = require('../models/User');
 const router = express.Router();
 
 router.get('/list', async (req, res) => {
-  const doc = await Message.find({});
+  const doc = await User.find({});
   res.send(doc);
 })
 
