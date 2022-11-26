@@ -1,11 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('./utils/constants');
+const cors = require('cors');
 const app = express();
 const userRoutes = require('./routes/user')
+const messageRoutes = require('./routes/message')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors({
+  origin :"*"
+}))
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
@@ -24,6 +29,7 @@ mongoose.connection.once('open', () => {
 })
 
 app.use('/user', userRoutes);
+app.use('/message', messageRoutes);
 
 app.get('/', (req, res) => {
   res.send("Works")
