@@ -1,0 +1,19 @@
+{
+  "name": "messaging-service-server",
+  "version": "1.0.0",
+  "description": "The backend server for the application for the customer messaging service",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shoury Sharma",
+  "license": "MIT",
+  "dependencies": {
+    "dotnet": "^1.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.3",
+    "nodemon": "^2.0.20"
+  }
+}
