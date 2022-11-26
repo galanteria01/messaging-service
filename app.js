@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('./utils/constants');
 const app = express();
+const userRoutes = require('./routes/user')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,6 +20,13 @@ mongoose.connection.on('error', err => {
 
 mongoose.connection.once('open', () => {
   console.log("Database has been connected successfully")
+
+})
+
+app.use('/user', userRoutes);
+
+app.get('/', (req, res) => {
+  res.send("Works")
 })
 
 app.listen(8000, () => {
