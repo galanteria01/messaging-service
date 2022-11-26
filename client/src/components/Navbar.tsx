@@ -12,6 +12,7 @@ const Navbar: React.FC<NavbarProps> = (props) => {
       w={'100%'}
       p={4}
       bg={'blackAlpha.200'}
+      position={'sticky'}
     >
       <Logo />
       <ColorModeSwitcher />

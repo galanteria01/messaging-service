@@ -2,9 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { MONGO_URI } = require('./utils/constants');
 const cors = require('cors');
-const app = express();
+const http = require('http')
 const userRoutes = require('./routes/user')
 const messageRoutes = require('./routes/message')
+const { Server } = require("socket.io");
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,6 +39,6 @@ app.get('/', (req, res) => {
   res.send("Works")
 })
 
-app.listen(8000, () => {
+server.listen(8000, () => {
   console.log("App is running on 8000");
 })

@@ -2,7 +2,8 @@ import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 
 interface ChatListProps { 
-  userId: string
+  userId: string,
+  timeStamp: string
 }
 
 const ChatListItem: React.FC<ChatListProps> = (props) => {
@@ -17,8 +18,8 @@ const ChatListItem: React.FC<ChatListProps> = (props) => {
       _hover={{ bg: "teal.600" }}
       _active={{ bg: "teal.800" }}
     >
-      <Text fontSize={32} fontWeight={600}>{props.userId}</Text>
-      <Text color={'gray'}>13 December 2023</Text>
+      <Text fontSize={32} fontWeight={600}>User: {props.userId}</Text>
+      <Text color={'gray'}>{props.timeStamp}</Text>
     </Flex>
   )
 }
