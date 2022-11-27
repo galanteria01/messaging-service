@@ -17,6 +17,7 @@ router.post('/add', async (req, res) => {
     'Sender' : body.sender
   })
   await message.save();
+  console.log(body)
   res.status(200).json({
     status: "SUCCESS"
   });

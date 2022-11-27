@@ -10,8 +10,9 @@ const MessageSend: React.FC<MessageSendProps> = (props) => {
   return (
     <Flex
       alignSelf={'flex-end'}
-      m={4}
+      m={'2!important'}
       bg={'blackAlpha.800'}
+      flexDir={'column'}
       p={2}
       borderRadius={4}
     >

@@ -3,6 +3,7 @@ import React from 'react'
 import { FaArrowAltCircleRight, FaBicycle, FaChevronDown } from 'react-icons/fa'
 import MessageReceive from './MessageReceive'
 import MessageSend from './MessageSend'
+import { getDatetimeString } from '../utils/helpers'
 
 interface ChatScreenProps {
   userId: string
@@ -29,6 +30,21 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
         })
     }
   }, [props.userId])
+
+  const submitMessage = () => {
+    fetch('http://localhost:8000/message/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: inputValue,
+        userId: props.userId,
+        sender: 'Admin',
+        timeStamp: getDatetimeString()
+      })
+    })
+  }
 
   if (props.userId === "") {
     return (
@@ -65,7 +81,8 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
       >
         {
           messages.map((item: any, index: number) => {
-            if (item.sender === 'user') {
+            console.log(item)
+            if (item['Sender'] === 'User') {
               return (
                 <MessageReceive key={index} message={item['Message Body']} time={item['Timestamp (UTC)']} />
               )
@@ -105,6 +122,7 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
           colorScheme='teal'
           aria-label='Search database'
           icon={<FaArrowAltCircleRight />}
+          onClick={() => submitMessage()}
         />
       </Flex>
     </Flex>
