@@ -1,6 +1,6 @@
-import { Center, Flex, Heading, Icon, IconButton, Input, VStack } from '@chakra-ui/react'
+import { Button, Center, Container, Flex, Heading, Icon, IconButton, Input, Menu, MenuButton, MenuItem, MenuList, VStack } from '@chakra-ui/react'
 import React from 'react'
-import { FaArrowAltCircleRight, FaBicycle } from 'react-icons/fa'
+import { FaArrowAltCircleRight, FaBicycle, FaChevronDown } from 'react-icons/fa'
 import MessageReceive from './MessageReceive'
 import MessageSend from './MessageSend'
 
@@ -10,6 +10,14 @@ interface ChatScreenProps {
 
 const ChatScreen: React.FC<ChatScreenProps> = (props) => {
   const [messages, setMessages] = React.useState<any>([]);
+  const [inputValue, setInputValue] = React.useState<any>("");
+
+  const predefinedInputs = [
+    "I'll get back to you as soon as possible",
+    "I'm looking at your issues at this moment and will try to contact you.",
+    "Hold on!",
+    "Certainly looking at your issue."
+  ]
 
   React.useEffect(() => {
     if (props.userId !== "") {
@@ -60,10 +68,30 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
           })
         }
       </VStack>
+      <Container w={'100%'}>
+        <Menu>
+          <MenuButton as={Button} rightIcon={<FaChevronDown />}>
+            Select among predefined messages
+          </MenuButton>
+          <MenuList>
+            {
+              predefinedInputs.map((item, index) => {
+                return (
+                  <MenuItem key={index} onClick={() => setInputValue(item)}>{item}</MenuItem>
+                )
+              })
+            }
+
+          </MenuList>
+        </Menu>
+        <Button mx={2}>
+          Mark as Urgent
+        </Button>
+      </Container>
       <Flex
         p={4}
       >
-        <Input placeholder='Type your message' />
+        <Input placeholder='Type your message' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
         <IconButton
           mx={2}
           colorScheme='teal'
