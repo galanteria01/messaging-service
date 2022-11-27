@@ -55,7 +55,7 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
         {
           messages.map((item: any, index: number) => {
             return (
-              <MessageReceive key={index} message={item['Message Body']} />
+              <MessageReceive key={index} message={item['Message Body']} time={item['Timestamp (UTC)']} />
             )
           })
         }

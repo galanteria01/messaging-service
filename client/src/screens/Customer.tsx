@@ -4,7 +4,9 @@ import ChatList from '../components/ChatList'
 import ChatScreen from '../components/ChatScreen'
 import Navbar from '../components/Navbar'
 
-const Customer = () => {
+interface CustomerProps {}
+
+const Customer: React.FC<CustomerProps> = (props) => {
   const [userId, setUserId] = React.useState<string>("");
   return (
     <VStack
