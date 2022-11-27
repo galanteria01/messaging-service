@@ -5,3 +5,31 @@ A customer messaging service with the backend and frontend implementation
 - Implement a canned message feature that allows agents to quickly respond to enquiries using a set of pre-configured stock messages.
 - Implement search functionality to allow agents to search over incoming messages and / or customers
 - Explore ways to surface additional information about customers (e.g. external profiles or some internal information we have about them) in the UI, to provide context to agents.
+
+## Server 
+```
+# Development Server
+yarn && yarn run dev
+
+# Deployment Server
+yarn && yarn run start
+```
+
+## Client (Admin Board Panel)
+```
+# Run development environment
+cd client
+yarn start
+```
+
+## Client (Customer Form)
+```
+# Run development environment
+cd sample
+yarn start
+```
+
+## TODO
+- Integrate Docker
+- Implement Sockets
+- Implement priority based solving issues
