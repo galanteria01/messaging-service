@@ -8,4 +8,17 @@ router.get('/:id', async (req, res) => {
   res.json(messages);
 })
 
+router.post('/add', async (req, res) => {
+  const body = req.body;
+  const message = new Message({
+    'User ID': body.userId,
+    'Timestamp (UTC)': body.timeStamp,
+    'Message Body': body.message
+  })
+  await message.save();
+  res.status(200).json({
+    status: "SUCCESS"
+  });
+})
+
 module.exports = router

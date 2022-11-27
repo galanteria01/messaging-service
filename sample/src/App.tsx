@@ -2,37 +2,44 @@ import * as React from "react"
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
   Grid,
   theme,
+  Input,
+  Button,
+  Heading,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
 
-export const App = () => (
-  <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Logo h="40vmin" pointerEvents="none" />
-          <Text>
-            Edit <Code fontSize="xl">src/App.tsx</Code> and save to reload.
-          </Text>
-          <Link
-            color="teal.500"
-            href="https://chakra-ui.com"
-            fontSize="2xl"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn Chakra
-          </Link>
-        </VStack>
-      </Grid>
-    </Box>
-  </ChakraProvider>
-)
+export const App = () => {
+  const [userId, setUserId] = React.useState<string>("")
+  const [message, setMessage] = React.useState<string>("")
+  const submitQuestion = () => {
+    fetch('http://localhost:8000/message/add', {
+      method: 'POST',
+      body: JSON.stringify({
+        userId,
+        message,
+        timeStamp: new Date().toUTCString()
+      })
+    })
+      .then(res => res.json())
+      .then(json => console.log(json))
+
+  }
+  return (
+    <ChakraProvider theme={theme}>
+      <Box textAlign="center" fontSize="xl">
+        <Grid minH="100vh" p={3}>
+          <ColorModeSwitcher justifySelf="flex-end" />
+          <VStack spacing={8}>
+            <Heading>Write your question?</Heading>
+            <Input placeholder={'User Id'} value={userId} onChange={(e) => setUserId(e.target.value)} />
+            <Input placeholder={'Write your question?'} value={message} onChange={(e) => setMessage(e.target.value)} />
+            <Button onClick={() => submitQuestion()}>Submit Question</Button>
+          </VStack>
+        </Grid>
+      </Box>
+    </ChakraProvider>
+  )
+}
