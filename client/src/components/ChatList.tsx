@@ -1,4 +1,4 @@
-import { Center, VStack } from '@chakra-ui/react'
+import { Center, CircularProgress, VStack } from '@chakra-ui/react'
 import React from 'react'
 import ChatListItem from './ChatListItem'
 
@@ -32,8 +32,8 @@ const ChatList: React.FC<ChatListProps> = (props) => {
     >
       {
         loading ?
-          <Center>
-            Loading...
+          <Center h={'100%'}>
+            <CircularProgress isIndeterminate color='teal.300' />
           </Center> :
           users.map((item: any) => {
             return (

@@ -9,6 +9,15 @@ interface ChatScreenProps {
 }
 
 const ChatScreen: React.FC<ChatScreenProps> = (props) => {
+  const [messages, setMessages] = React.useState<any>([]);
+
+  React.useEffect(() => {
+    if (props.userId !== "") {
+      fetch(`http://localhost:8000/message/${props.userId}`)
+        .then(res => res.json())
+        .then(json => setMessages(json))
+    }
+  }, [props.userId])
 
   if (props.userId === "") {
     return (
@@ -26,8 +35,6 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
         </Center>
       </Flex>
     )
-  } else {
-    console.log(props.userId)
   }
   return (
     <Flex
@@ -45,8 +52,13 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
           }
         }}
       >
-        <MessageReceive message='Hello recieve' />
-        <MessageSend message='Hello send' />
+        {
+          messages.map((item: any, index: number) => {
+            return (
+              <MessageReceive key={index} message={item['Message Body']} />
+            )
+          })
+        }
       </VStack>
       <Flex
         p={4}

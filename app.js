@@ -29,7 +29,6 @@ mongoose.connection.on('error', err => {
 
 mongoose.connection.once('open', () => {
   console.log("Database has been connected successfully")
-
 })
 
 app.use('/user', userRoutes);

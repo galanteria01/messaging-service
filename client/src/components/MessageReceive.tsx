@@ -9,7 +9,7 @@ const MessageReceive: React.FC<MessageRecieveProps> = (props) => {
   return (
     <Flex
       alignSelf={'flex-start'}
-      m={2}
+      m={'2!important'}
       bg={'blackAlpha.400'}
       p={2}
       borderRadius={4}

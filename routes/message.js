@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router();
 const Message = require('../models/Message');
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   const id = req.params.id;
-  const messages = Message.find({ 'User ID': id });
+  const messages = await Message.find({ 'User ID': id });
   res.json(messages);
 })
 
