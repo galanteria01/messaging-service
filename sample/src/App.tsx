@@ -21,7 +21,8 @@ export const App = () => {
       body: JSON.stringify({
         userId,
         message,
-        timeStamp: new Date().toUTCString()
+        timeStamp: new Date().toUTCString(),
+        sender: 'user'
       })
     })
       .then(res => res.json())

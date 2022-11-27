@@ -9,6 +9,9 @@ const messageSchema = new mongoose.Schema({
   },
   'Message Body': {
     type: String
+  },
+  'Sender': {
+    type: String
   }
 })
 

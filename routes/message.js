@@ -13,7 +13,8 @@ router.post('/add', async (req, res) => {
   const message = new Message({
     'User ID': body.userId,
     'Timestamp (UTC)': body.timeStamp,
-    'Message Body': body.message
+    'Message Body': body.message,
+    'Sender' : body.sender
   })
   await message.save();
   res.status(200).json({
