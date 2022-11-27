@@ -32,6 +32,7 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
   }, [props.userId])
 
   const submitMessage = () => {
+    const dateTime = getDatetimeString();
     fetch('http://localhost:8000/message/add', {
       method: 'POST',
       headers: {
@@ -41,9 +42,18 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
         message: inputValue,
         userId: props.userId,
         sender: 'Admin',
-        timeStamp: getDatetimeString()
+        timeStamp: dateTime
       })
-    })
+    }).then(res => res.json())
+      .then(json => {
+        setMessages([...messages, {
+          'Sender': 'Admin',
+          'User ID': props.userId,
+          'Timestamp (UTC)': dateTime,
+          'Message Body': inputValue
+        }])
+        setInputValue("");
+      })
   }
 
   if (props.userId === "") {
