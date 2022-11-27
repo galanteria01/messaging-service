@@ -7,4 +7,9 @@ router.get('/list', async (req, res) => {
   res.send(doc);
 })
 
+router.get('/:id', async (req, res) => {
+  const user = await User.find({ 'User ID': req.params.id });
+  res.send(user);
+})
+
 module.exports = router

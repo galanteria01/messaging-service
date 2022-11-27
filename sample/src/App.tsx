@@ -8,6 +8,7 @@ import {
   Input,
   Button,
   Heading,
+  Container,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 
@@ -32,12 +33,14 @@ export const App = () => {
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
           <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Heading>Write your question?</Heading>
-            <Input placeholder={'User Id'} value={userId} onChange={(e) => setUserId(e.target.value)} />
-            <Input placeholder={'Write your question?'} value={message} onChange={(e) => setMessage(e.target.value)} />
-            <Button onClick={() => submitQuestion()}>Submit Question</Button>
-          </VStack>
+          <Container>
+            <VStack spacing={8}>
+              <Heading>Write your question?</Heading>
+              <Input placeholder={'User Id'} value={userId} onChange={(e) => setUserId(e.target.value)} />
+              <Input placeholder={'Write your question?'} value={message} onChange={(e) => setMessage(e.target.value)} />
+              <Button onClick={() => submitQuestion()}>Submit Question</Button>
+            </VStack>
+          </Container>
         </Grid>
       </Box>
     </ChakraProvider>

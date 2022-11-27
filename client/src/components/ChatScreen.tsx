@@ -23,7 +23,10 @@ const ChatScreen: React.FC<ChatScreenProps> = (props) => {
     if (props.userId !== "") {
       fetch(`http://localhost:8000/message/${props.userId}`)
         .then(res => res.json())
-        .then(json => setMessages(json))
+        .then(json => {
+          json.sort((a: any, b: any) => a['Timestamp (UTC)'] - b['Timestamp (UTC)'])
+          setMessages(json);
+        })
     }
   }, [props.userId])
 
