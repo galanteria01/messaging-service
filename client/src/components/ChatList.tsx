@@ -2,13 +2,14 @@ import { Center, VStack } from '@chakra-ui/react'
 import React from 'react'
 import ChatListItem from './ChatListItem'
 
-interface ChatListProps { }
+interface ChatListProps {
+  setUserId: (a: string) => void
+}
 
 const ChatList: React.FC<ChatListProps> = (props) => {
 
   const [loading, setLoading] = React.useState<boolean>(true);
   const [users, setUsers] = React.useState<any>();
-  const [userId, setUserId] = React.useState<string>("");
 
   React.useEffect(() => {
     fetch('http://localhost:8000/user/list')
@@ -35,9 +36,8 @@ const ChatList: React.FC<ChatListProps> = (props) => {
             Loading...
           </Center> :
           users.map((item: any) => {
-            console.log(item)
             return (
-              <ChatListItem timeStamp={item['Timestamp (UTC)']} userId={item['User ID']} />
+              <ChatListItem key={item['User ID']} timeStamp={item['Timestamp (UTC)']} userId={item['User ID']} setUserId={props.setUserId} />
             )
           })
       }

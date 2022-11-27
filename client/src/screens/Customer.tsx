@@ -18,7 +18,7 @@ const Customer = () => {
         justifyContent={'space-between'}
         marginTop={'0!important'}
       >
-        <ChatList />
+        <ChatList setUserId={setUserId} />
         <ChatScreen userId={userId} />
       </Flex>
     </VStack>

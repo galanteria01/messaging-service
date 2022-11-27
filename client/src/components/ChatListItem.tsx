@@ -3,7 +3,8 @@ import React from 'react'
 
 interface ChatListProps { 
   userId: string,
-  timeStamp: string
+  timeStamp: string,
+  setUserId: (a:string) => void
 }
 
 const ChatListItem: React.FC<ChatListProps> = (props) => {
@@ -17,6 +18,7 @@ const ChatListItem: React.FC<ChatListProps> = (props) => {
       borderRadius={8}
       _hover={{ bg: "teal.600" }}
       _active={{ bg: "teal.800" }}
+      onClick={() => props.setUserId(props.userId)}
     >
       <Text fontSize={32} fontWeight={600}>User: {props.userId}</Text>
       <Text color={'gray'}>{props.timeStamp}</Text>
